@@ -1,9 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Layout from './components/layouts/Layout';
 
 
 const App = () => {
   return (
-    <div>Index</div>
+    <Router>
+      <Layout>
+        <Switch>
+          <Route path='/'>
+            Index
+          </Route>
+        </Switch>
+      </Layout>
+    </Router>
   )
 }
 
