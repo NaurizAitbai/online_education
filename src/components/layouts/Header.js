@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { faSearch as searchIcon, faUser as userIcon } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Header.module.css';
 
 
@@ -12,8 +14,11 @@ const Header = () => {
                 <li>Меню 1</li>
                 <li>Меню 2</li>
             </ul>
-            <div className={styles.search}>SEARCH</div>
-            <div className={styles.auth}>AUTH</div>
+            <form className={styles.search}>
+                <input type="text" placeholder="What do you want to learn?" />
+                <button type="submit"><FontAwesomeIcon icon={searchIcon} /></button>
+            </form>
+            <button className={styles.auth}><FontAwesomeIcon icon={userIcon} /></button>
         </header>
     )
 }

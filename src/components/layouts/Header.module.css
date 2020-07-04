@@ -1,14 +1,24 @@
 .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: white;
 }
 
 .brand {
+    margin-left: 40px;
+    margin-right: 60px;
     font-size: 1.3rem;
     font-weight: bold;
     text-decoration: none;
 }
 
 .menu {
+    margin-right: 60px;
     display: flex;
     list-style: none;
 }
@@ -16,4 +26,44 @@
 .menu li {
     margin-right: 20px;
     text-transform: uppercase;
+}
+
+.search {
+    width: 400px;
+    height: 40px;
+}
+
+.search input {
+    outline: none;
+    width: calc(100% - 40px);
+    height: 100%;
+    padding: 0 10px;
+    border: 1px solid #e1e1e1;
+    border-radius: 2px 0 0 2px;
+}
+
+.search button {
+    outline: none;
+    width: 40px;
+    height: 40px;
+    background-color: #2a73cc;
+    border: none;
+    border-radius: 0 2px 2px 0;
+    color: white;
+}
+
+.auth {
+    outline: none;
+    margin-left: auto;
+    padding: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.auth:hover {
+    background-color: #2a73cc;
+    color: white;
 }

@@ -9,7 +9,18 @@ const App = () => {
       <Layout>
         <Switch>
           <Route path='/'>
-            Index
+            <div>INDEX 1</div>
+            <div>INDEX 2</div>
+            <div>INDEX 3</div>
+            <div>INDEX 4</div>
+            <div>INDEX 5</div>
+            <div>INDEX 6</div>
+            <div>INDEX 7</div>
+            <div>INDEX 8</div>
+            <div>INDEX 9</div>
+            <div>INDEX 10</div>
+            <div>INDEX 11</div>
+            <div>INDEX 12</div>
           </Route>
         </Switch>
       </Layout>
