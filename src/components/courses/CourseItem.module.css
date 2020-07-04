@@ -37,10 +37,32 @@
     margin-bottom: auto;
 }
 
+.price {
+    font-weight: bold;
+    color: #2a73cc;
+    margin-bottom: 10px;
+}
+
 .stats {
     display: flex;
     justify-content: space-between;
     margin: 0px 10px 10px 10px;
     padding-top: 10px;
     border-top: 1px solid black;
+}
+
+.star {
+    font-size: 0.8rem;
+}
+
+.star.active {
+    color: #ffcb10;
+}
+
+.members {
+    font-size: 0.8rem;
+}
+
+.members svg {
+    margin-right: 5px;
 }

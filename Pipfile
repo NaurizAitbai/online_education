@@ -9,3 +9,5 @@ autopep8 = "*"
 
 [packages]
 django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
