@@ -10,7 +10,7 @@ const Header = () => {
         <header className={styles.container}>
             <Link to='/' className={styles.brand}>ONLINE EDUCATION</Link>
             <ul className={styles.menu}>
-                <li>Все курсы</li>
+                <li><Link to='/courses/'>Все курсы</Link></li>
                 <li>Меню 1</li>
                 <li>Меню 2</li>
             </ul>

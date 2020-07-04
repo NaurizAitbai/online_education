@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
+import CourseListPage from './pages/CourseListPage';
 
 
 const App = () => {
@@ -8,6 +9,9 @@ const App = () => {
     <Router>
       <Layout>
         <Switch>
+          <Route path='/courses'>
+            <CourseListPage />
+          </Route>
           <Route path='/'>
             <div>INDEX 1</div>
             <div>INDEX 2</div>

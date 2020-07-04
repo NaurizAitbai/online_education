@@ -1,5 +1,5 @@
 .container {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -26,6 +26,11 @@
 .menu li {
     margin-right: 20px;
     text-transform: uppercase;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: black;
 }
 
 .search {
