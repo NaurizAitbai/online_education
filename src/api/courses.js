@@ -8,3 +8,7 @@ export const getCourses = () => {
 export const getCourse = id => {
     return api().get(`/courses/${id}/`);
 }
+
+export const getMembers = id => {
+    return api().get(`/courses/${id}/members/`);
+}
