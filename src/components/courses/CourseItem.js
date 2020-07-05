@@ -1,33 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './CourseItem.module.css';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as starIcon, faUsers as membersIcon } from '@fortawesome/free-solid-svg-icons';
+import { faUsers as membersIcon } from '@fortawesome/free-solid-svg-icons';
+import Rating from '../ui/Rating';
 
 
 const CourseItem = ({ className, course }) => {
     return (
         <div className={classNames(styles.container, className)}>
-            <div className={styles.image} style={{ backgroundImage: `url(${course.thumbnail})`}}></div>
+            <Link to={`/course/${course.id}/`} className={styles.image} style={{ backgroundImage: `url(${course.thumbnail})`}}></Link>
             <div className={styles.content}>
                 <div className={styles.author} style={{ backgroundImage: `url(${course.author.profile.avatar})`}}></div>
-                <span className={styles.title}>{course.name}</span>
+                <Link to={`/course/${course.id}`} className={styles.title}>{course.name}</Link>
                 <span className={styles.price}>{course.price}</span>
             </div>
             <div className={styles.stats}>
-                <div className={styles.rating}>
-                    {[...Array(5).keys()].map(value => {
-                        const starClasses = classNames(styles.star, {
-                            [styles.active]: course.rating >= value + 1
-                        })
-                        return (
-                            <FontAwesomeIcon className={starClasses} icon={starIcon} />
-                        )
-                    })}
-                </div>
+                <Rating rating={3} />
                 <span className={styles.members}>
                     <FontAwesomeIcon icon={membersIcon} />
-                    {course.members}
+                    58
                 </span>
             </div>
         </div>

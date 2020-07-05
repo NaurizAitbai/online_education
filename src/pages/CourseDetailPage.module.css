@@ -1,0 +1,12 @@
+.stat {
+    display: flex;
+    align-items: center;
+}
+
+.rating {
+    margin-right: 20px;
+}
+
+.reviews {
+    margin-right: 20px;
+}

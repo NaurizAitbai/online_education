@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import CourseListPage from './pages/CourseListPage';
+import CourseDetailPage from './pages/CourseDetailPage';
 
 
 const App = () => {
@@ -9,8 +10,11 @@ const App = () => {
     <Router>
       <Layout>
         <Switch>
-          <Route path='/courses'>
+          <Route path='/courses/'>
             <CourseListPage />
+          </Route>
+          <Route path='/course/:id/'>
+            <CourseDetailPage />
           </Route>
           <Route path='/'>
             <div>INDEX 1</div>

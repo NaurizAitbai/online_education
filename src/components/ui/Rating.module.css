@@ -1,0 +1,11 @@
+.rating {
+    display: flex;
+}
+
+.star {
+    font-size: 0.8rem;
+}
+
+.star.active {
+    color: #ffcb10;
+}
