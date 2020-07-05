@@ -8,9 +8,9 @@ import { faStar as starIcon, faUsers as membersIcon } from '@fortawesome/free-so
 const CourseItem = ({ className, course }) => {
     return (
         <div className={classNames(styles.container, className)}>
-            <div className={styles.image}></div>
+            <div className={styles.image} style={{ backgroundImage: `url(${course.thumbnail})`}}></div>
             <div className={styles.content}>
-                <div className={styles.author}></div>
+                <div className={styles.author} style={{ backgroundImage: `url(${course.author.profile.avatar})`}}></div>
                 <span className={styles.title}>{course.name}</span>
                 <span className={styles.price}>{course.price}</span>
             </div>

@@ -22,5 +22,6 @@ yarn-error.log*
 
 .venv/
 __pycache__/
+/uploads/
 online_education/local_settings.py
 db.sqlite3
