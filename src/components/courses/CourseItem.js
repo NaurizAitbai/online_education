@@ -20,7 +20,7 @@ const CourseItem = ({ className, course }) => {
                 <Rating rating={3} />
                 <span className={styles.members}>
                     <FontAwesomeIcon icon={membersIcon} />
-                    58
+                    { course.members }
                 </span>
             </div>
         </div>

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
-from backend.models import Course, Profile
+from backend.models import Course, CourseMember, Profile
 
 
 @admin.register(Course)
@@ -10,6 +10,13 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = ('id', 'author', 'name', 'created_at', 'modified_at', 'archived')
     list_display_links = ('id', 'name')
     search_fields = ('author__username', 'name')
+
+
+@admin.register(CourseMember)
+class CourseMemberAdmin(admin.ModelAdmin):
+    list_display = ('id', 'course', 'user', 'created_at', 'modified_at')
+    list_display_links = ('id',)
+    search_fields = ('course__name', 'user__username')
 
 
 class ProfileInline(admin.StackedInline):

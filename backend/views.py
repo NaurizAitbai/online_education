@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets
-from backend.serializers import UserSerializer, CourseSerializer
-from backend.models import Course
+from backend.serializers import UserSerializer, CourseSerializer, CourseMemberSerializer
+from backend.models import Course, CourseMember
 
 
 class UserViewSet(viewsets.ModelViewSet):

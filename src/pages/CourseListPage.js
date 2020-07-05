@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CourseList from '../components/courses/CourseList';
+import Container from '../components/layouts/Container';
 import { getCourses } from '../api/courses';
 
 
@@ -13,7 +14,7 @@ const CourseListPage = () => {
     }
 
     return (
-        <div><CourseList courses={courses} /></div>
+        <Container><CourseList courses={courses} /></Container>
     )
 }
 

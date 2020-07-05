@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
-from backend.models import Course, Profile
+from backend.models import Course, CourseMember, Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -23,10 +23,31 @@ class UserSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['id', 'author', 'name', 'thumbnail']
+        fields = ['id', 'author', 'name', 'thumbnail', 'short_description', 'long_description', 'members']
+        extra_kwargs = {
+            'members': {'read_only': True}
+        }
     
     def to_representation(self, value):
         data = super().to_representation(value)
         user_serializer = UserSerializer(value.author, context=self.context)
         data['author'] = user_serializer.data
+
+        # TODO: Рефакторинг
+        data['members'] = len(data['members'])
+
+        return data
+    
+
+class CourseMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseMember
+        fields = ['id', 'course', 'user']
+    
+    def to_representation(self, value):
+        data = super().to_representation(value)
+        course_serializer = CourseSerializer(value.course, context=self.context)
+        user_serializer = UserSerializer(value.user, context=self.context)
+        data['course'] = course_serializer.data
+        data['user'] = user_serializer.data
         return data

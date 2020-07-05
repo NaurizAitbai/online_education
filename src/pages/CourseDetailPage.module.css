@@ -4,9 +4,62 @@
 }
 
 .rating {
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 .reviews {
-    margin-right: 20px;
+    margin-right: 40px;
+}
+
+.members svg {
+    margin-right: 5px;
+}
+
+.descriptionBlock {
+    display: flex;
+}
+
+.descriptionBlock .image {
+    flex: 3;
+    margin-right: 30px;
+    background-size: cover;
+    background-position: center;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+.sidebar button {
+    outline: none;
+    cursor: pointer;
+    border: 2px solid blue;
+    color: blue;
+    font-weight: bold;
+    background-color: white;
+    padding: 20px 40px;
+}
+
+.sidebar button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.instructors {
+    margin-top: 20px;
+}
+
+.instructor {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.instructor .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
 }

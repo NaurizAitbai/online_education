@@ -11,10 +11,10 @@ const App = () => {
       <Layout>
         <Switch>
           <Route path='/courses/'>
-            <CourseListPage />
+              <CourseListPage />
           </Route>
           <Route path='/course/:id/'>
-            <CourseDetailPage />
+              <CourseDetailPage />
           </Route>
           <Route path='/'>
             <div>INDEX 1</div>
@@ -32,7 +32,7 @@ const App = () => {
           </Route>
         </Switch>
       </Layout>
-    </Router>
+    </Router >
   )
 }
 
