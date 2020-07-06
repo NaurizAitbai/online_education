@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
-from backend.models import Course, CourseMember, Profile
+from backend.models import Course, CourseSection, CourseUnit, CourseMember, Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -20,12 +20,27 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
+class CourseUnitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseUnit
+        fields = ['name']
+
+
+class CourseSectionSerializer(serializers.ModelSerializer):
+    units = CourseUnitSerializer(many=True, read_only=True)
+    class Meta:
+        model = CourseSection
+        fields = ['name', 'units']
+
+
 class CourseSerializer(serializers.ModelSerializer):
+    sections = CourseSectionSerializer(many=True, read_only=True)
+
     class Meta:
         model = Course
-        fields = ['id', 'author', 'name', 'thumbnail', 'short_description', 'long_description', 'members']
+        fields = ['id', 'author', 'name', 'thumbnail', 'short_description', 'long_description', 'members', 'sections']
         extra_kwargs = {
-            'members': {'read_only': True}
+            'members': {'read_only': True},
         }
     
     def to_representation(self, value):
@@ -37,7 +52,7 @@ class CourseSerializer(serializers.ModelSerializer):
         data['members'] = len(data['members'])
 
         return data
-    
+
 
 class CourseMemberSerializer(serializers.ModelSerializer):
     class Meta:

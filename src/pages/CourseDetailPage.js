@@ -62,14 +62,35 @@ const CourseDetailPage = () => {
                         </div>
                     </div>
                     <ul className={styles.tabs}>
-                        <li className={classNames({[styles.active]: tabState === TabState.DESCRIPTION})} onClick={() => setTabState(TabState.DESCRIPTION)}>Описание</li>
-                        <li className={classNames({[styles.active]: tabState === TabState.MEMBERS})} onClick={() => setTabState(TabState.MEMBERS)}>Участники</li>
-                        <li className={classNames({[styles.active]: tabState === TabState.ACTIVITY})} onClick={() => setTabState(TabState.ACTIVITY)}>Активность</li>
-                        <li className={classNames({[styles.active]: tabState === TabState.EVENTS})} onClick={() => setTabState(TabState.EVENTS)}>События</li>
+                        <li className={classNames({ [styles.active]: tabState === TabState.DESCRIPTION })} onClick={() => setTabState(TabState.DESCRIPTION)}>Описание</li>
+                        <li className={classNames({ [styles.active]: tabState === TabState.MEMBERS })} onClick={() => setTabState(TabState.MEMBERS)}>Участники</li>
+                        <li className={classNames({ [styles.active]: tabState === TabState.ACTIVITY })} onClick={() => setTabState(TabState.ACTIVITY)}>Активность</li>
+                        <li className={classNames({ [styles.active]: tabState === TabState.EVENTS })} onClick={() => setTabState(TabState.EVENTS)}>События</li>
                     </ul>
                     <div className={styles.tabContent}>
                         {tabState === TabState.DESCRIPTION && (
-                            <ReactMarkdown source={course.long_description} />
+                            <div>
+                                <ReactMarkdown source={course.long_description} />
+                                <div>
+                                    <h2>Course Curriculum</h2>
+                                </div>
+                                {course.sections && (
+                                    <ul>
+                                        {course.sections.map(section => (
+                                            <li>
+                                                {section.name}
+                                                {section.units && (
+                                                    <ul>
+                                                        {section.units.map(unit => (
+                                                            <li>{unit.name}</li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
                         )}
                         {tabState === TabState.MEMBERS && (
                             <MemberList course={course} />
@@ -81,6 +102,7 @@ const CourseDetailPage = () => {
                             <div>EVENTS</div>
                         )}
                     </div>
+                    <div style={{ marginBottom: '50px' }}></div>
                 </Fragment>
             )}
         </Container>

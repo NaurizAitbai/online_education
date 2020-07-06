@@ -2,11 +2,30 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
-from backend.models import Course, CourseMember, Profile
+from backend.models import Course, CourseSection, CourseUnit, CourseMember, Profile
+
+
+class CourseUnitInline(admin.StackedInline):
+    model = CourseUnit
+
+
+@admin.register(CourseSection)
+class CourseSectionAdmin(admin.ModelAdmin):
+    inlines = (CourseUnitInline,)
+
+    list_display = ('id', 'course', 'name')
+    list_display_links = ('id', 'name')
+    search_fields = ('course__name', 'name')
+
+
+class CourseSectionInline(admin.StackedInline):
+    model = CourseSection
 
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
+    inlines = (CourseSectionInline,)
+
     list_display = ('id', 'author', 'name', 'created_at', 'modified_at', 'archived')
     list_display_links = ('id', 'name')
     search_fields = ('author__username', 'name')

@@ -22,8 +22,8 @@ class CourseViewSet(viewsets.ModelViewSet):
         page = self.paginate_queryset(members)
 
         if page is not None:
-            serializer = CourseMemberSerializer(page, many=True)
+            serializer = CourseMemberSerializer(page, many=True, context={"request": self.request})
             return self.get_paginated_response(serializer.data)
 
-        serializer = CourseMemberSerializer(members, many=True)
+        serializer = CourseMemberSerializer(members, many=True, context={"request": self.request})
         return Response(serializer.data)

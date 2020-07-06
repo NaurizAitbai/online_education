@@ -23,6 +23,32 @@ class Course(models.Model):
         return self.name
 
 
+class CourseSection(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sections', verbose_name=_('Курс'))
+    name = models.CharField(max_length=128, verbose_name=_('Название секции'))
+
+    class Meta:
+        db_table = 'sections'
+        verbose_name = _('секция курса')
+        verbose_name_plural = _('секции курсов')
+    
+    def __str__(self):
+        return "{}: {}".format(self.course, self.name)
+
+
+class CourseUnit(models.Model):
+    section = models.ForeignKey(CourseSection, on_delete=models.CASCADE, related_name='units', verbose_name=_('Секция'))
+    name = models.CharField(max_length=128, verbose_name=_('Название урока'))
+
+    class Meta:
+        db_table = 'units'
+        verbose_name = _('урок в секции курса')
+        verbose_name_plural = _('уроки в секции курса')
+    
+    def __str__(self):
+        return "{} - {}".format(self.section, self.name)
+
+
 class CourseMember(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='members', verbose_name=_('Курс'))
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='member_of_courses', verbose_name=_('Пользователь'))
