@@ -39,6 +39,7 @@ class CourseSection(models.Model):
 class CourseUnit(models.Model):
     section = models.ForeignKey(CourseSection, on_delete=models.CASCADE, related_name='units', verbose_name=_('Секция'))
     name = models.CharField(max_length=128, verbose_name=_('Название урока'))
+    content = models.TextField(verbose_name=_('Содержание урока'))
 
     class Meta:
         db_table = 'units'
@@ -47,6 +48,32 @@ class CourseUnit(models.Model):
     
     def __str__(self):
         return "{} - {}".format(self.section, self.name)
+
+
+RATING_CHOICES = (
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5)
+)
+
+
+class CourseReview(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='reviews', verbose_name=_('Курс'))
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews', verbose_name=_('Автор отзыва'))
+    rating = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True, verbose_name=_('Оценка'))
+    text = models.CharField(max_length=255, null=True, blank=True, verbose_name=_('Комментария'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Дата и время создания'))
+    modified_at = models.DateTimeField(auto_now=True, verbose_name=_('Дата и время изменения'))
+
+    class Meta:
+        db_table = 'reviews'
+        verbose_name = _('отзыв курса')
+        verbose_name_plural = _('отзывы курсов')
+
+    def __str__(self):
+        return "{}: {}".format(self.course, self.author)
 
 
 class CourseMember(models.Model):

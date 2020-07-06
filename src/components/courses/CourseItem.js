@@ -17,7 +17,7 @@ const CourseItem = ({ className, course }) => {
                 <span className={styles.price}>{course.price}</span>
             </div>
             <div className={styles.stats}>
-                <Rating rating={3} />
+                <Rating rating={course.rating} />
                 <span className={styles.members}>
                     <FontAwesomeIcon icon={membersIcon} />
                     { course.members }

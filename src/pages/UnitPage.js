@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Container from '../components/layouts/Container';
 import { getUnit } from '../api/units';
+import ReactMarkdown from 'react-markdown';
 
 
 const UnitPage = () => {
@@ -9,7 +10,7 @@ const UnitPage = () => {
 
     const params = useParams();
 
-    if(!unit) {
+    if (!unit) {
         const id = params.id;
         getUnit(id).then(res => {
             setUnit(res.data);
@@ -21,7 +22,10 @@ const UnitPage = () => {
     return (
         <Container>
             {unit && (
-                <h1>{unit.name}</h1>
+                <div>
+                    <h1>{unit.name}</h1>
+                    <ReactMarkdown source={unit.content} />
+                </div>
             )}
         </Container>
     )

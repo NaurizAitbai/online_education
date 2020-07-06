@@ -9,6 +9,10 @@ export const getCourse = id => {
     return api().get(`/courses/${id}/`);
 }
 
+export const getCourseReviews = id => {
+    return api().get(`/courses/${id}/reviews/`);
+}
+
 export const getMembers = id => {
     return api().get(`/courses/${id}/members/`);
 }

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
-import { getCourse } from '../api/courses';
+import { getCourse, getCourseReviews } from '../api/courses';
 import Rating from '../components/ui/Rating';
 import Container from '../components/layouts/Container';
 import styles from './CourseDetailPage.module.css';
@@ -23,6 +23,7 @@ const TabState = {
 
 const CourseDetailPage = () => {
     const [course, setCourse] = useState();
+    const [reviews, setReviews] = useState([]);
     const [tabState, setTabState] = useState(TabState.DESCRIPTION);
 
     const params = useParams();
@@ -36,14 +37,22 @@ const CourseDetailPage = () => {
         })
     }
 
+    if (course && !reviews.length) {
+        getCourseReviews(course.id).then(res => {
+            setReviews(res.data.results);
+        }).catch(error => {
+            console.log(error.response);
+        })
+    }
+
     return (
         <Container>
             {course && (
                 <Fragment>
                     <h1>{course.name}</h1>
                     <div className={styles.stat}>
-                        <Rating className={styles.rating} rating={3} />
-                        <span className={styles.reviews}>(4 отзывов)</span>
+                        <Rating className={styles.rating} rating={course.rating} />
+                        <span className={styles.reviews}>({course.reviews} отзывов)</span>
                         <div className={styles.members}>
                             <FontAwesomeIcon icon={membersIcon} />
                             <span>{course.members} СТУДЕНТОВ</span>
@@ -84,6 +93,35 @@ const CourseDetailPage = () => {
                                                 <Accordeon title={section.name}>
                                                     {section.units && <UnitList units={section.units} />}
                                                 </Accordeon>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+
+                                <div>
+                                    <h2>Course Reviews</h2>
+                                </div>
+
+                                <div className={styles.reviewBlock}>
+                                    <div>
+                                        <span>{course.rating}</span>
+                                        <div><Rating rating={course.rating} /></div>
+                                    </div>
+                                    <ul>
+                                        <li>5 STARS</li>
+                                        <li>4 STARS</li>
+                                        <li>3 STARS</li>
+                                        <li>2 STARS</li>
+                                        <li>1 STARS</li>
+                                    </ul>
+                                </div>
+
+                                {reviews && (
+                                    <ul>
+                                        {reviews.map(review => (
+                                            <li>
+                                                <p>{review.user.username}</p>
+                                                <p>{review.text}</p>
                                             </li>
                                         ))}
                                     </ul>
