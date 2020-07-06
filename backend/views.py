@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from backend.serializers import UserSerializer, CourseSerializer, CourseMemberSerializer
-from backend.models import Course, CourseMember
+from backend.serializers import UserSerializer, CourseSerializer, CourseUnitSerializer, CourseMemberSerializer
+from backend.models import Course, CourseUnit, CourseMember
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,3 +27,8 @@ class CourseViewSet(viewsets.ModelViewSet):
 
         serializer = CourseMemberSerializer(members, many=True, context={"request": self.request})
         return Response(serializer.data)
+
+
+class CourseUnitViewSet(viewsets.ModelViewSet):
+    queryset = CourseUnit.objects.all()
+    serializer_class = CourseUnitSerializer

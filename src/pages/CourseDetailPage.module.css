@@ -89,3 +89,7 @@
 .tabContent {
     margin-top: 30px;
 }
+
+.sections {
+    list-style: none;
+}

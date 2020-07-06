@@ -23,7 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
 class CourseUnitSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseUnit
-        fields = ['name']
+        fields = ['id', 'name']
 
 
 class CourseSectionSerializer(serializers.ModelSerializer):

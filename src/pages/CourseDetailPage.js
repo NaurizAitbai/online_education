@@ -9,6 +9,8 @@ import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers as membersIcon } from '@fortawesome/free-solid-svg-icons';
 import MemberList from '../components/course/MemberList';
+import Accordeon from '../components/ui/Accordeon';
+import UnitList from '../components/ui/UnitList';
 
 
 const TabState = {
@@ -74,18 +76,14 @@ const CourseDetailPage = () => {
                                 <div>
                                     <h2>Course Curriculum</h2>
                                 </div>
+
                                 {course.sections && (
-                                    <ul>
+                                    <ul className={styles.sections}>
                                         {course.sections.map(section => (
                                             <li>
-                                                {section.name}
-                                                {section.units && (
-                                                    <ul>
-                                                        {section.units.map(unit => (
-                                                            <li>{unit.name}</li>
-                                                        ))}
-                                                    </ul>
-                                                )}
+                                                <Accordeon title={section.name}>
+                                                    {section.units && <UnitList units={section.units} />}
+                                                </Accordeon>
                                             </li>
                                         ))}
                                     </ul>

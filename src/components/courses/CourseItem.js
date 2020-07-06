@@ -10,10 +10,10 @@ import Rating from '../ui/Rating';
 const CourseItem = ({ className, course }) => {
     return (
         <div className={classNames(styles.container, className)}>
-            <Link to={`/course/${course.id}/`} className={styles.image} style={{ backgroundImage: `url(${course.thumbnail})`}}></Link>
+            <Link to={`/courses/${course.id}/`} className={styles.image} style={{ backgroundImage: `url(${course.thumbnail})`}}></Link>
             <div className={styles.content}>
                 <div className={styles.author} style={{ backgroundImage: `url(${course.author.profile.avatar})`}}></div>
-                <Link to={`/course/${course.id}`} className={styles.title}>{course.name}</Link>
+                <Link to={`/courses/${course.id}`} className={styles.title}>{course.name}</Link>
                 <span className={styles.price}>{course.price}</span>
             </div>
             <div className={styles.stats}>

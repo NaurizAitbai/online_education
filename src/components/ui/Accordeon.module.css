@@ -1,0 +1,27 @@
+.container header {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+.container header:hover {
+    color: #2a73cc;
+}
+
+.container header span {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.container header svg {
+    font-size: 1.4rem;
+}
+
+.container div {
+    display: none;
+}
+
+.container div.active {
+    display: block;
+}

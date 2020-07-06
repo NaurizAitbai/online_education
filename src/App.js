@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import CourseListPage from './pages/CourseListPage';
 import CourseDetailPage from './pages/CourseDetailPage';
+import UnitPage from './pages/UnitPage';
 
 
 const App = () => {
@@ -10,11 +11,14 @@ const App = () => {
     <Router>
       <Layout>
         <Switch>
-          <Route path='/courses/'>
-              <CourseListPage />
+          <Route path='/units/:id/'>
+            <UnitPage />
           </Route>
-          <Route path='/course/:id/'>
-              <CourseDetailPage />
+          <Route path='/courses/:id/'>
+            <CourseDetailPage />
+          </Route>
+          <Route path='/courses/'>
+            <CourseListPage />
           </Route>
           <Route path='/'>
             <div>INDEX 1</div>
